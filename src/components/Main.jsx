@@ -5,30 +5,36 @@ function Main() {
         <main className="mt-5">
             <section id="movies" className="container">
 
-                <h2>Movies</h2>
+                <h2 className="p-3 ">Movies</h2>
 
                 <div className="d-flex container ">
-                    <div className="row col-3 p-3">
-
+                    <div className="row g-3">
                         <Card />
-
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
                     </div>
                 </div>
 
             </section>
 
-            <section id="TV-series" className="container">
-                <h2>TV Series</h2>
+            <section id="movies" className="container">
+
+                <h2 className="p-3 ">Movies</h2>
 
                 <div className="d-flex container ">
-                    <div className="row col-3 p-3">
-
+                    <div className="row g-3">
                         <Card />
-
+                        <Card />
+                        <Card />
+                        <Card />
+                        <Card />
                     </div>
                 </div>
 
             </section>
+
 
 
         </main>
