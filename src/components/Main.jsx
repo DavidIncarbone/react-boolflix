@@ -1,6 +1,9 @@
-import Card from "./Card"
+import Card from "./Card";
+import { useGlobalContext } from "../contexts/GlobalContext";
 
 function Main() {
+    const { filmsList, setFilmsList, getFilms } = useGlobalContext();
+    console.log(filmsList);
     return (
         <main className="mt-5">
             <section id="movies" className="container">
@@ -9,27 +12,28 @@ function Main() {
 
                 <div className="d-flex container ">
                     <div className="row g-3">
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
+                        {filmsList.map((film) => {
+                            return (<Card key={crypto.randomUUID()} title={film.title}
+                            // image={film.backdrop_path}
+                            />)
+
+
+                        })}
+
+
                     </div>
                 </div>
 
             </section>
 
-            <section id="movies" className="container">
+            <section id="movies" className="container pb-5">
 
-                <h2 className="p-3 ">Movies</h2>
+                <h2 className="p-3 ">TV Series</h2>
 
                 <div className="d-flex container ">
                     <div className="row g-3">
                         <Card />
-                        <Card />
-                        <Card />
-                        <Card />
-                        <Card />
+
                     </div>
                 </div>
 
