@@ -1,0 +1,16 @@
+:root {
+    --color-header-bg: #000000;
+    --color-main-title: #da1212;
+    --color-main-bg: #565457;
+    --color-title: #ffffff;
+}
+
+header {
+    background-color: var(--color-header-bg);
+}
+
+h1 {
+    text-transform: uppercase;
+    color: var(--color-main-title);
+
+}
