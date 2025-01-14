@@ -18,13 +18,12 @@ const GlobalProvider = ({ children }) => {
 
     // FUNCTIONS
 
-    useEffect(() => {
+    // useEffect(() => {
 
-        getFilms()
-    }, []);
+    //     getFilms()
+    // }, []);
 
     function getFilms() {
-
         axios.get(apiMovieUrl + "discover/movie?" + apiKey).then((res) => {
             console.log(res.data);
             setFilmsList(res.data.results)
@@ -37,8 +36,39 @@ const GlobalProvider = ({ children }) => {
             });
     }
 
+    function handleSearch(query) {
+        // const searchField = document.getElementById("form1").value
+        // console.log(query)
+
+        getFilmsFiltered(query);
+    }
+
+    function getFilmsFiltered(query) {
+        // let options = null;
+        // if (search) {
+        //     options = {
+        //         params: { search },
+        //     };
+        // }
+
+        axios.get(apiSearch + "?" + apiKey + "&query=" + query)
+            .then((res) => {
+                // console.log(res.data.results)
+                // const filmFiltered = res.data.results
+                // filmFiltered.map((film) => film.title.includes(search))
+                setFilmsList(res.data.results)
+
+            }).catch((error) => {
+                console.log(error);
+            })
+            .finally(() => {
+                console.log("Chiamata effettuata")
+            })
+
+    }
+
     return (
-        <GlobalContext.Provider value={{ getFilms, filmsList, setFilmsList, search, setSearch }}>
+        <GlobalContext.Provider value={{ getFilms, getFilmsFiltered, filmsList, setFilmsList, search, setSearch, handleSearch }}>
             {children}
         </GlobalContext.Provider>
     );
