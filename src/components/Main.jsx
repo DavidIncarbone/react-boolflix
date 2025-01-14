@@ -10,10 +10,14 @@ function Main() {
 
                 <h2 className="p-3 ">Movies</h2>
 
-                <div className="d-flex container ">
+                <div id="card-container" className="d-flex container ">
                     <div className="row g-3">
                         {filmsList.map((film) => {
-                            return (<Card key={crypto.randomUUID()} title={film.title}
+                            return (<Card key={crypto.randomUUID()}
+                                title={film.title}
+                                originalTitle={film.original_title}
+                                language={film.original_language}
+                                vote={film.vote_average}
                             // image={film.backdrop_path}
                             />)
 

@@ -4,7 +4,6 @@ import { GlobalProvider } from "./contexts/GlobalContext";
 import Header from "./components/Header";
 import Main from "./components/Main";
 
-// import { GlobalProvider } from "./contexts/GlobalContext";
 
 function App() {
 
@@ -15,7 +14,6 @@ function App() {
         <Header />
         <Main />
       </GlobalProvider>
-
 
     </>
 

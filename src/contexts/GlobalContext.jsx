@@ -8,14 +8,9 @@ const GlobalContext = createContext();
 const apiMovieUrl = import.meta.env.VITE_API_URL;
 const apiKey = "api_key=" + import.meta.env.VITE_API_KEY;
 const apiImage = import.meta.env.VITE_PATH_IMAGE;
-const keyURL = {
-    params: { apiKey }
-}
-
-
+const apiSearch = import.meta.env.VITE_API_SEARCH;
 
 const GlobalProvider = ({ children }) => {
-
     // VARIABLES
 
     const [filmsList, setFilmsList] = useState([]);
@@ -29,11 +24,7 @@ const GlobalProvider = ({ children }) => {
     }, []);
 
     function getFilms() {
-        // let options = null;
-        // if (search) {
-        //     options = {
-        //         params: { search },
-        //     };
+
         axios.get(apiMovieUrl + "discover/movie?" + apiKey).then((res) => {
             console.log(res.data);
             setFilmsList(res.data.results)
@@ -47,7 +38,7 @@ const GlobalProvider = ({ children }) => {
     }
 
     return (
-        <GlobalContext.Provider value={{ getFilms, filmsList, setFilmsList }}>
+        <GlobalContext.Provider value={{ getFilms, filmsList, setFilmsList, search, setSearch }}>
             {children}
         </GlobalContext.Provider>
     );
@@ -59,4 +50,4 @@ function useGlobalContext() {
     return context;
 }
 
-export { GlobalProvider, useGlobalContext };
+export { GlobalProvider, useGlobalContext }
