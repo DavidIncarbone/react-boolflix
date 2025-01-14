@@ -7,7 +7,7 @@ function Main() {
 
                 <h2>Movies</h2>
 
-                <div className="d-flex container debug">
+                <div className="d-flex container ">
                     <div className="row col-3 p-3">
 
                         <Card />
@@ -20,7 +20,7 @@ function Main() {
             <section id="TV-series" className="container">
                 <h2>TV Series</h2>
 
-                <div className="d-flex container debug">
+                <div className="d-flex container ">
                     <div className="row col-3 p-3">
 
                         <Card />
