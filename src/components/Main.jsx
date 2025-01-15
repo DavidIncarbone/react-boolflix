@@ -1,6 +1,7 @@
 import Card from "./Card";
 import { useGlobalContext } from "../contexts/GlobalContext";
 import { useState } from "react";
+import axios from "axios";
 
 function Main() {
     const { filmsList, seriesList } = useGlobalContext();
@@ -22,6 +23,7 @@ function Main() {
                                         originalTitle={film.original_title}
                                         language={film.original_language}
                                         vote={film.vote_average}
+                                        image={film.backdrop_path}
 
                                     />)
                                 })}
@@ -43,7 +45,7 @@ function Main() {
                                         originalTitle={film.original_title}
                                         language={film.original_language}
                                         vote={film.vote_average}
-                                    // image={film.backdrop_path}
+                                        image={film.backdrop_path}
                                     />)
                                 })}
 

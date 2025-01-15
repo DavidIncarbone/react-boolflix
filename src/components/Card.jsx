@@ -1,8 +1,9 @@
 
 
 const flags = ["it", "de", "en", "fr", "es"];
+import axios from "axios";
 
-export default function Card({ title, originalTitle, language, vote }) {
+export default function Card({ title, originalTitle, language, vote, image }) {
 
 
     const flag = flags.includes(language);
@@ -20,7 +21,7 @@ export default function Card({ title, originalTitle, language, vote }) {
     return (
         < div className="card d-flex col-3 bg-dark text-white" style={{ "height": "25rem" }
         }>
-            <img src="https://picsum.photos/seed/picsum/200/300" className="card-img-top h-50" alt="..." />
+            <img src={`https://image.tmdb.org/t/p/w342${image}`} className="card-img-top h-50" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{originalTitle}</p>

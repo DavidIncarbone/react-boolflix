@@ -7,7 +7,7 @@ import { createContext, useContext, useState, useEffect } from "react";
 const GlobalContext = createContext();
 const apiMovieUrl = import.meta.env.VITE_API_URL;
 const apiKey = "api_key=" + import.meta.env.VITE_API_KEY;
-const apiImage = import.meta.env.VITE_PATH_IMAGE;
+const apiImages = import.meta.env.VITE_PATH_IMAGE;
 const apiSearch = import.meta.env.VITE_API_SEARCH;
 
 const GlobalProvider = ({ children }) => {
