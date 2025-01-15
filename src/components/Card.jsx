@@ -1,5 +1,6 @@
 
-import CardStyle from "../style/Card.module.css"
+import CardStyle from "../style/Card.module.css";
+import { FaStar, FaRegStar } from "react-icons/fa";
 const flags = ["it", "de", "en", "fr", "es"];
 import axios from "axios";
 
@@ -10,15 +11,21 @@ export default function Card({ title, originalTitle, language, vote, image }) {
         ? language + ".png"
         : "Unknown.png";
 
-    // function drawStars() {
+    const drawStars = () => {
+        let stars = [];
+        for (let i = 1; i <= 5; i++) {
+            //voto 1,5
+            const star =
+                i <= Math.ceil(vote / 2) ? (
+                    <FaStar key={i} />
+                ) : (
+                    <FaRegStar key={i} />
+                );
+            stars.push(star);
+        }
+        return stars;
+    };
 
-    //     let stars = [];
-    //     for (let i = 1; i <= 5; i++) {
-    //         const star =
-    //             i <= Math.ceil(vote / 2) ? (<FaStar key={i} />) : <FaRegStar key={i} />;
-    //         stars.push(star);
-    //     }
-    // }
 
     return (
         < div className="card d-flex col-3 bg-dark text-white" style={{ "height": "25rem" }
@@ -27,8 +34,11 @@ export default function Card({ title, originalTitle, language, vote, image }) {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{originalTitle}</p>
-                {/* <div className="d-flex justify-content-around"> */}
-                <div>Voto: {vote}</div>
+                <div className="d-flex gap-1">
+                    <div>Voto: </div>
+                    <div className={CardStyle.cardStar}>{drawStars()}</div>
+
+                </div>
                 <div className="d-flex gap-1">
                     <span>Lingua: </span> <div className={CardStyle.icons}>
                         <img
@@ -38,7 +48,7 @@ export default function Card({ title, originalTitle, language, vote, image }) {
                         />
                     </div>
                 </div>
-                {/* </div> */}
+                {/*  */}
 
             </div>
         </div >
