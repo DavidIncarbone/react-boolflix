@@ -14,36 +14,22 @@ const GlobalProvider = ({ children }) => {
     // VARIABLES
 
     const [filmsList, setFilmsList] = useState([]);
+    const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
 
-    // FUNCTIONS
 
-    // useEffect(() => {
 
-    //     getFilms()
-    // }, []);
 
-    function getFilms() {
-        axios.get(apiMovieUrl + "discover/movie?" + apiKey).then((res) => {
-            console.log(res.data);
-            setFilmsList(res.data.results)
-
-        }).catch((error) => {
-            console.log(error);
-        })
-            .finally(() => {
-                console.log("Chiamata effettuata")
-            });
-    }
 
     function handleSearch(query) {
         // const searchField = document.getElementById("form1").value
         // console.log(query)
 
-        getFilmsFiltered(query);
+        getFilmsFiltered(query, "movie");
+        getFilmsFiltered(query, "tv");
     }
 
-    function getFilmsFiltered(query) {
+    function getFilmsFiltered(query, type) {
         // let options = null;
         // if (search) {
         //     options = {
@@ -51,24 +37,28 @@ const GlobalProvider = ({ children }) => {
         //     };
         // }
 
-        axios.get(apiSearch + "?" + apiKey + "&query=" + query)
+        axios.get(apiSearch + type + "?" + apiKey + "&query=" + query)
             .then((res) => {
-                // console.log(res.data.results)
-                // const filmFiltered = res.data.results
-                // filmFiltered.map((film) => film.title.includes(search))
-                setFilmsList(res.data.results)
 
-            }).catch((error) => {
+                if (type === "movie") {
+
+                    setFilmsList(res.data.results);
+                } else {
+                    setSeriesList(res.data.results);
+                }
+            })
+            .catch((error) => {
                 console.log(error);
             })
             .finally(() => {
                 console.log("Chiamata effettuata")
             })
 
+
     }
 
     return (
-        <GlobalContext.Provider value={{ getFilms, getFilmsFiltered, filmsList, setFilmsList, search, setSearch, handleSearch }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch }}>
             {children}
         </GlobalContext.Provider>
     );
