@@ -1,7 +1,7 @@
 export default function Card({ title, originalTitle, language, vote }) {
 
     return (
-        <div className="card d-flex col-3 p-3" style={{ "height": "18rem" }}>
+        <div className="card d-flex col-3" style={{ "height": "25rem" }}>
             <img src="https://picsum.photos/seed/picsum/200/300" className="card-img-top" alt="..." />
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
