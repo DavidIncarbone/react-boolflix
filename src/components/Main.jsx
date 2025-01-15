@@ -12,32 +12,38 @@ function Main() {
             return (<h4 id="info-page" className="text-center text-white">Cerca i tuoi Films preferiti!</h4>)
         } else {
             return (
-                <main className="mt-5">
-                    <section id="movies">
-                        <h2 className="text-center">Movies</h2>
-                        <div id="card-container" className="d-flex container ">
-                            <div className="row gap-3 d-flex justify-content-center">
+                <main className="mt-5 container-fluid">
+                    <section id="movies" className=" py-5">
+
+                        <h2 className="p-3 text-center">Films</h2>
+
+                        <div className="d-flex container">
+                            <div className="row g-3 d-flex justify-content-center">
+
                                 {filmsList.map((film) => {
                                     return (<Card key={crypto.randomUUID()}
                                         title={film.title}
                                         originalTitle={film.original_title}
                                         language={film.original_language}
                                         vote={film.vote_average}
-                                        image={film.backdrop_path}
+                                        image={film.poster_path}
 
                                     />)
                                 })}
+
                             </div>
                         </div>
 
                     </section>
+
+
 
                     <section id="movies" className=" pb-5">
 
                         <h2 className="p-3 text-center">TV Series</h2>
 
                         <div className="d-flex container">
-                            <div className="row gap-3 d-flex justify-content-center">
+                            <div className="row g-3 d-flex justify-content-center">
 
                                 {seriesList.map((film) => {
                                     return (<Card key={crypto.randomUUID()}
@@ -45,7 +51,7 @@ function Main() {
                                         originalTitle={film.original_title}
                                         language={film.original_language}
                                         vote={film.vote_average}
-                                        image={film.backdrop_path}
+                                        image={film.poster_path}
                                     />)
                                 })}
 
