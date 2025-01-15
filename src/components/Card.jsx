@@ -1,12 +1,14 @@
 
-
+import CardStyle from "../style/Card.module.css"
 const flags = ["it", "de", "en", "fr", "es"];
 import axios from "axios";
 
 export default function Card({ title, originalTitle, language, vote, image }) {
 
 
-    const flag = flags.includes(language);
+    const flag = flags.includes(language)
+        ? language + ".png"
+        : "Unknown.png";
 
     // function drawStars() {
 
@@ -25,10 +27,18 @@ export default function Card({ title, originalTitle, language, vote, image }) {
             <div className="card-body">
                 <h5 className="card-title">{title}</h5>
                 <p className="card-text">{originalTitle}</p>
-                <div className="d-flex justify-content-around">
-                    <div>Voto: {vote}</div>
-                    <div>Lingua: {language}</div>
+                {/* <div className="d-flex justify-content-around"> */}
+                <div>Voto: {vote}</div>
+                <div className="d-flex gap-1">
+                    <span>Lingua: </span> <div className={CardStyle.icons}>
+                        <img
+                            src={`/img/flags/${flag}`}
+                            alt={language}
+                            className="img-fluid text-white"
+                        />
+                    </div>
                 </div>
+                {/* </div> */}
 
             </div>
         </div >
