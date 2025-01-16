@@ -18,8 +18,7 @@ function Main() {
                         <h2 className="p-3 text-center">Films</h2>
 
                         <div className="d-flex container">
-                            <div className="row g-3 d-flex justify-content-center">
-
+                            <div className="row g-3 ">
                                 {filmsList.map((film) => {
                                     return (<Card key={crypto.randomUUID()}
                                         title={film.title}
