@@ -1,6 +1,7 @@
 // IMPORT
 import axios from "axios";
 import { createContext, useContext, useState, useEffect } from "react";
+import { DiVim } from "react-icons/di";
 
 
 // VARIABLES
@@ -16,10 +17,7 @@ const GlobalProvider = ({ children }) => {
     const [filmsList, setFilmsList] = useState([]);
     const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
-
-
-
-
+    const [actorsList, setActorsList] = useState([]);
 
     function handleSearch(query) {
         // const searchField = document.getElementById("form1").value
@@ -27,6 +25,7 @@ const GlobalProvider = ({ children }) => {
 
         getFilmsFiltered(query, "movie");
         getFilmsFiltered(query, "tv");
+        getActors();
     }
 
     function getFilmsFiltered(query, type) {
@@ -57,8 +56,29 @@ const GlobalProvider = ({ children }) => {
 
     }
 
+    const getActors = (id) => {
+
+        axios.get(`https://api.themoviedb.org/3/movie/762509/credits?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
+
+            setActorsList(res.data.cast)
+
+        }).catch((err) => {
+            console.log(err)
+        }).finally(() => {
+            console.log("Chiamata verso i credits effettuata")
+        })
+
+    }
+
+    console.log(actorsList)
+    const actorsName = actorsList.map((item) => (item.name))
+    console.log(actorsName + "nomi")
+
+
+
+
     return (
-        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, actorsList, setActorsList, actorsName }}>
             {children}
         </GlobalContext.Provider>
     );

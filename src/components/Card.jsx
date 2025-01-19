@@ -1,10 +1,20 @@
 
 import CardStyle from "../style/Card.module.css";
 import { FaStar, FaRegStar } from "react-icons/fa";
-const flags = ["it", "de", "en", "fr", "es"];
+import { useGlobalContext } from "../contexts/GlobalContext";
 import axios from "axios";
+import { useState } from "react";
+import { ActorsName } from "./Actors"
+const flags = ["it", "de", "en", "fr", "es"];
 
-export default function Card({ title, originalTitle, language, vote, image }) {
+
+export default function Card({ title, originalTitle, language, vote, image, id, actors }) {
+
+    const { actorsName } = useGlobalContext();
+    // const [actorsName, setActorsName] = useState([]);
+    // setActorsName(actorsList.map((item) => item.name))
+    // console.log(actorsName + "nomi attori")
+
 
 
     const flag = flags.includes(language)
@@ -28,7 +38,7 @@ export default function Card({ title, originalTitle, language, vote, image }) {
 
 
     return (
-        <div id="card" className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
+        <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
             <img
                 src={"https://image.tmdb.org/t/p/w342" + image}
                 className={`card-img-top ${CardStyle.cardImg}`}
@@ -47,6 +57,11 @@ export default function Card({ title, originalTitle, language, vote, image }) {
                     />
                 </div>
                 <div className={CardStyle.cardStar}>{drawStars()}</div>
+                <h5 className="text-center p-3">Actors</h5>
+                <ul>
+                    <ActorsName />
+                </ul>
+
             </div>
         </div>
 

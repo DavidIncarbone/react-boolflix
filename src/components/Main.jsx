@@ -4,7 +4,7 @@ import { useState } from "react";
 import axios from "axios";
 
 function Main() {
-    const { filmsList, seriesList } = useGlobalContext();
+    const { filmsList, seriesList, getActors, actorsName } = useGlobalContext();
 
     console.log(filmsList, seriesList);
     {
@@ -12,12 +12,13 @@ function Main() {
             return (<h4 id="info-page" className="text-center text-white">Cerca i tuoi Films preferiti!</h4>)
         } else {
             return (
+
                 <main className="mt-5 container-fluid">
                     <section id="movies" className=" py-5">
 
                         <h2 className="p-3 text-center">Films</h2>
 
-                        <div className="d-flex container">
+                        <div className=" container">
                             <div className="row g-3 ">
                                 {filmsList.map((film) => {
                                     return (<Card key={crypto.randomUUID()}
@@ -26,6 +27,8 @@ function Main() {
                                         language={film.original_language}
                                         vote={film.vote_average}
                                         image={film.poster_path}
+                                        id={film.id}
+                                        actors={actorsName}
 
                                     />)
                                 })}
