@@ -28,7 +28,7 @@ function Main() {
                                         vote={film.vote_average}
                                         image={film.poster_path}
                                         id={film.id}
-                                        actors={actorsName}
+
 
                                     />)
                                 })}

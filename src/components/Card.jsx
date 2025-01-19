@@ -3,15 +3,15 @@ import CardStyle from "../style/Card.module.css";
 import { FaStar, FaRegStar } from "react-icons/fa";
 import { useGlobalContext } from "../contexts/GlobalContext";
 import axios from "axios";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { ActorsName } from "./Actors"
 const flags = ["it", "de", "en", "fr", "es"];
 
 
-export default function Card({ title, originalTitle, language, vote, image, id, actors }) {
+export default function Card({ title, originalTitle, language, vote, image, id }) {
 
     const { actorsName } = useGlobalContext();
-    // const [actorsName, setActorsName] = useState([]);
+    const [actors, setActors] = useState([]);
     // setActorsName(actorsList.map((item) => item.name))
     // console.log(actorsName + "nomi attori")
 
@@ -36,6 +36,18 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
         return stars;
     };
 
+    useEffect(() => {
+
+        const getActors = () => {
+
+            axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
+                setActors(res.data.cast);
+            });
+        }
+        getActors();
+
+    }, [id])
+
 
     return (
         <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
@@ -59,7 +71,9 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
                 <div className={CardStyle.cardStar}>{drawStars()}</div>
                 <h5 className="text-center p-3">Actors</h5>
                 <ul>
-                    <ActorsName />
+                    {actors.slice(0, 5).map((actor) =>
+                        <li className="text-white" key={crypto.randomUUID()}>{actor.name}</li>
+                    )}
                 </ul>
 
             </div>
