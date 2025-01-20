@@ -15,7 +15,7 @@ function Header() {
     return (
         <header className="d-flex justify-content-between pe-3">
             <h1 className="p-3">
-                Booflix
+                Boolflix
             </h1>
             <div className="d-flex align-items-center">
                 <div>

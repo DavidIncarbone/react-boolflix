@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 const flags = ["it", "de", "en", "fr", "es"];
 
 
-export default function Card({ title, originalTitle, language, vote, image, id, genreID, genreName }) {
+export default function Card({ title, originalTitle, language, vote, image, id, genreID }) {
 
     const [genres, setGenres] = useState([]);
     const [actors, setActors] = useState([]);
@@ -68,53 +68,61 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
             return (singleGenres)
         }
     })
+    if (singleGenres.includes(selectedGenre) || !selectedGenre || selectedGenre === "Scegli la categoria") {
 
 
+        return (
 
+            <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
+                <img
+                    src={"https://image.tmdb.org/t/p/w342" + image}
+                    className={`card-img-top ${CardStyle.cardImg}`}
+                    alt={title || name}
+                />
+                <div className={`card-body ${CardStyle.cardInner}`}>
+                    <h4 className="card-title">{title || name}</h4>
+                    <h5 className="card-text">
+                        {originalTitle}
+                    </h5>
+                    <div className={CardStyle.flag}>
+                        <img
+                            src={`/img/flags/${flag}`}
+                            alt={language}
+                            className="img-fluid"
+                        />
+                    </div>
+                    <div className={CardStyle.cardStar}>{drawStars()}</div>
+                    <h5 className="text-center p-3">Actors</h5>
+                    <ul>
+                        {actors.slice(0, 5).map((actor) =>
+                            <li className="text-white" key={crypto.randomUUID()}>{actor.name}</li>
+                        )}
+                    </ul>
+                    <h5 className="text-center p-3">Genere</h5>
+                    <ul className="w-100 d-flex flex-wrap gap-3 justify-content-around list-unstyled">
+                        {genres.map((genre) => {
+                            if (genreID.includes(genre.id)) {
+                                return (<li key={genre.id}>{genre.name}</li>)
+                            }
+                        })}
+                    </ul>
 
-
-    return (
-
-        singleGenres.includes(selectedGenre) &&
-
-
-        <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
-            <img
-                src={"https://image.tmdb.org/t/p/w342" + image}
-                className={`card-img-top ${CardStyle.cardImg}`}
-                alt={title || name}
-            />
-            <div className={`card-body ${CardStyle.cardInner}`}>
-                <h4 className="card-title">{title || name}</h4>
-                <h5 className="card-text">
-                    {originalTitle}
-                </h5>
-                <div className={CardStyle.flag}>
-                    <img
-                        src={`/img/flags/${flag}`}
-                        alt={language}
-                        className="img-fluid"
-                    />
                 </div>
-                <div className={CardStyle.cardStar}>{drawStars()}</div>
-                <h5 className="text-center p-3">Actors</h5>
-                <ul>
-                    {actors.slice(0, 5).map((actor) =>
-                        <li className="text-white" key={crypto.randomUUID()}>{actor.name}</li>
-                    )}
-                </ul>
-                <h5 className="text-center p-3">Genere</h5>
-                <ul className="w-100 d-flex flex-wrap gap-3 justify-content-around list-unstyled">
-                    {genres.map((genre) => {
-                        if (genreID.includes(genre.id)) {
-                            return (<li key={genre.id}>{genre.name}</li>)
-                        }
-                    })}
-                </ul>
+            </div >
 
-            </div>
-        </div >
 
-    )
+
+
+        )
+
+
+
+
+
+
+    }
+
+
+
 }
 

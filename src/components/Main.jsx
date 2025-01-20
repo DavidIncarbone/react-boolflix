@@ -46,8 +46,8 @@ function Main() {
 
                         <h2 className="p-3 text-center">TV Series</h2>
 
-                        <div className="d-flex container">
-                            <div className="row g-3 d-flex justify-content-center">
+                        <div className="container">
+                            <div className="row g-3">
 
                                 {seriesList.map((tv) => {
                                     return (<TvCard key={crypto.randomUUID()}
