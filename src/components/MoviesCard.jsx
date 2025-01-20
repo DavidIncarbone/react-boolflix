@@ -4,7 +4,6 @@ import { FaStar, FaRegStar } from "react-icons/fa";
 import { useGlobalContext } from "../contexts/GlobalContext";
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { ActorsName } from "./Actors"
 const flags = ["it", "de", "en", "fr", "es"];
 
 
@@ -12,8 +11,7 @@ export default function Card({ title, originalTitle, language, vote, image, id }
 
     const { actorsName } = useGlobalContext();
     const [actors, setActors] = useState([]);
-    // setActorsName(actorsList.map((item) => item.name))
-    // console.log(actorsName + "nomi attori")
+
 
 
 
@@ -24,7 +22,7 @@ export default function Card({ title, originalTitle, language, vote, image, id }
     const drawStars = () => {
         let stars = [];
         for (let i = 1; i <= 5; i++) {
-            //voto 1,5
+
             const star =
                 i <= Math.ceil(vote / 2) ? (
                     <FaStar key={i} />
@@ -82,24 +80,3 @@ export default function Card({ title, originalTitle, language, vote, image, id }
     )
 }
 
-{/* < div className="card d-flex col-3 bg-dark text-white" CardStyle={{ "height": "25rem" }
-}>
-    <img src={`https://image.tmdb.org/t/p/w342${image}`} className="card-img-top h-50" alt="..." />
-    <div className="card-body">
-        <h5 className="card-title">{title}</h5>
-        <p className="card-text">{originalTitle}</p>
-        <div className="d-flex gap-1">
-            <div>Voto: </div>
-            <div className={CardCardStyle.cardStar}>{drawStars()}</div>
-        </div>
-        <div className="d-flex gap-1">
-            <span>Lingua: </span> <div className={CardCardStyle.icons}>
-                <img
-                    src={`/img/flags/${flag}`}
-                    alt={language}
-                    className="img-fluid text-white"
-                />
-            </div>
-        </div>
-    </div>
-</div > */}

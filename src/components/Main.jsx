@@ -1,12 +1,11 @@
-import Card from "./Card";
+import MoviesCard from "./MoviesCard";
+import TvCard from "./TvCard";
 import { useGlobalContext } from "../contexts/GlobalContext";
-import { useState } from "react";
-import axios from "axios";
+
 
 function Main() {
-    const { filmsList, seriesList, getActors, actorsName } = useGlobalContext();
+    const { filmsList, seriesList } = useGlobalContext();
 
-    console.log(filmsList, seriesList);
     {
         if (filmsList.length < 1) {
             return (<h4 id="info-page" className="text-center text-white">Cerca i tuoi Films preferiti!</h4>)
@@ -21,7 +20,7 @@ function Main() {
                         <div className=" container">
                             <div className="row g-3 ">
                                 {filmsList.map((film) => {
-                                    return (<Card key={crypto.randomUUID()}
+                                    return (<MoviesCard key={crypto.randomUUID()}
                                         title={film.title}
                                         originalTitle={film.original_title}
                                         language={film.original_language}
@@ -48,12 +47,14 @@ function Main() {
                             <div className="row g-3 d-flex justify-content-center">
 
                                 {seriesList.map((film) => {
-                                    return (<Card key={crypto.randomUUID()}
+                                    return (<TvCard key={crypto.randomUUID()}
                                         title={film.name}
                                         originalTitle={film.original_title}
                                         language={film.original_language}
                                         vote={film.vote_average}
                                         image={film.poster_path}
+                                        id={film.id}
+
                                     />)
                                 })}
 
