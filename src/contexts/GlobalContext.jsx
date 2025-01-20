@@ -15,10 +15,11 @@ const GlobalProvider = ({ children }) => {
     const [filmsList, setFilmsList] = useState([]);
     const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
+    const [selectedGenre, setSelectedGenre] = useState("");
 
 
-    function handleSearch(query) {
-
+    function handleSearch(event, query) {
+        event.preventDefault();
         getFilmsFiltered(query, "movie");
         getFilmsFiltered(query, "tv");
 
@@ -56,7 +57,7 @@ const GlobalProvider = ({ children }) => {
     console.log(seriesList)
 
     return (
-        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, selectedGenre, setSelectedGenre }}>
             {children}
         </GlobalContext.Provider>
     );

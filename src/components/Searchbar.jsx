@@ -8,9 +8,6 @@ export default function Searchbar() {
 
     const [query, setQuery] = useState('');
 
-    function preventDefault(event) {
-        event.preventDefault();
-    }
 
     return (
         <div className="input-group h-25 pt-2">
@@ -20,7 +17,7 @@ export default function Searchbar() {
                 <label className="form-label" htmlFor="form1">Search</label>
             </div>
             <div>
-                <SearchButton handleSearch={() => handleSearch(query)}
+                <SearchButton handleSearch={() => handleSearch(event, query)}
 
                 />
             </div>

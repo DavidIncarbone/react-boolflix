@@ -7,10 +7,11 @@ import { useState, useEffect } from "react";
 const flags = ["it", "de", "en", "fr", "es"];
 
 
-export default function Card({ title, originalTitle, language, vote, image, id, genreID }) {
+export default function Card({ title, originalTitle, language, vote, image, id, genreID, genreName }) {
 
     const [genres, setGenres] = useState([]);
     const [actors, setActors] = useState([]);
+    const { selectedGenre } = useGlobalContext();
 
 
     const flag = flags.includes(language)
@@ -57,7 +58,26 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
         getGenres();
 
     }, [id])
+
+
+
+    const singleGenres = []
+    genres.map((genre) => {
+        if (genreID.includes(genre.id)) {
+            singleGenres.push(genre.name)
+            return (singleGenres)
+        }
+    })
+
+
+
+
+
     return (
+
+        singleGenres.includes(selectedGenre) &&
+
+
         <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
             <img
                 src={"https://image.tmdb.org/t/p/w342" + image}
