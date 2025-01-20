@@ -49,14 +49,15 @@ function Main() {
                         <div className="d-flex container">
                             <div className="row g-3 d-flex justify-content-center">
 
-                                {seriesList.map((film) => {
+                                {seriesList.map((tv) => {
                                     return (<TvCard key={crypto.randomUUID()}
-                                        title={film.name}
-                                        originalTitle={film.original_title}
-                                        language={film.original_language}
-                                        vote={film.vote_average}
-                                        image={film.poster_path}
-                                        id={film.id}
+                                        title={tv.name}
+                                        originalTitle={tv.original_title}
+                                        language={tv.original_language}
+                                        vote={tv.vote_average}
+                                        image={tv.poster_path}
+                                        id={tv.id}
+                                        genreID={tv.genre_ids}
 
                                     />)
                                 })}

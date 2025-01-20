@@ -9,9 +9,9 @@ const flags = ["it", "de", "en", "fr", "es"];
 
 export default function Card({ title, originalTitle, language, vote, image, id, genreID }) {
 
-
-    const [actors, setActors] = useState([]);
     const [genres, setGenres] = useState([]);
+    const [actors, setActors] = useState([]);
+
 
     const flag = flags.includes(language)
         ? language + ".png"
@@ -42,8 +42,6 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
 
     }
 
-
-
     const getGenres = () => {
 
         axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
@@ -59,12 +57,6 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
         getGenres();
 
     }, [id])
-
-
-
-
-
-
     return (
         <div id="card" key={id} className={`card col-3 ${CardStyle.cardWrapper} ${CardStyle.cardEffect}`}>
             <img
@@ -92,7 +84,7 @@ export default function Card({ title, originalTitle, language, vote, image, id, 
                     )}
                 </ul>
                 <h5 className="text-center p-3">Genere</h5>
-                <ul className="w-100 d-flex justify-content-around list-unstyled">
+                <ul className="w-100 d-flex flex-wrap gap-3 justify-content-around list-unstyled">
                     {genres.map((genre) => {
                         if (genreID.includes(genre.id)) {
                             return (<li key={genre.id}>{genre.name}</li>)

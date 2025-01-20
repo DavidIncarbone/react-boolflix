@@ -1,14 +1,12 @@
 // IMPORT
 import axios from "axios";
-import { createContext, useContext, useState, useEffect } from "react";
-import { DiVim } from "react-icons/di";
+import { createContext, useContext, useState } from "react";
+
 
 
 // VARIABLES
 const GlobalContext = createContext();
-const apiMovieUrl = import.meta.env.VITE_API_URL;
 const apiKey = "api_key=" + import.meta.env.VITE_API_KEY;
-const apiImages = import.meta.env.VITE_PATH_IMAGE;
 const apiSearch = import.meta.env.VITE_API_SEARCH;
 
 const GlobalProvider = ({ children }) => {
@@ -17,7 +15,6 @@ const GlobalProvider = ({ children }) => {
     const [filmsList, setFilmsList] = useState([]);
     const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
-    const [genresID, setGenresID] = useState([]);
 
 
     function handleSearch(query) {
@@ -52,19 +49,14 @@ const GlobalProvider = ({ children }) => {
             .finally(() => {
                 console.log("Chiamata effettuata")
             })
-
-
     }
 
+
     console.log(filmsList)
-    console.log(genresID)
-
-
-
-
+    console.log(seriesList)
 
     return (
-        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, apiSearch, apiKey, }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch }}>
             {children}
         </GlobalContext.Provider>
     );
