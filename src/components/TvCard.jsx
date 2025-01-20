@@ -11,9 +11,6 @@ export default function TvCard({ title, originalTitle, language, vote, image, id
     const { actorsName } = useGlobalContext();
     const [actors, setActors] = useState([]);
 
-
-
-
     const flag = flags.includes(language)
         ? language + ".png"
         : "Unknown.png";

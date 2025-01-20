@@ -7,13 +7,11 @@ import { useState, useEffect } from "react";
 const flags = ["it", "de", "en", "fr", "es"];
 
 
-export default function Card({ title, originalTitle, language, vote, image, id }) {
+export default function Card({ title, originalTitle, language, vote, image, id, genreID }) {
 
-    const { actorsName } = useGlobalContext();
+
     const [actors, setActors] = useState([]);
-
-
-
+    const [genres, setGenres] = useState([]);
 
     const flag = flags.includes(language)
         ? language + ".png"
@@ -34,17 +32,37 @@ export default function Card({ title, originalTitle, language, vote, image, id }
         return stars;
     };
 
+    const getActors = () => {
+
+        axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
+            setActors(res.data.cast);
+        }).catch((error) => {
+            console.log(error);
+        })
+
+    }
+
+
+
+    const getGenres = () => {
+
+        axios.get(`https://api.themoviedb.org/3/genre/movie/list?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
+            setGenres(res.data.genres)
+        }).catch((error) => {
+            console.log(error);
+        })
+
+    }
+
     useEffect(() => {
-
-        const getActors = () => {
-
-            axios.get(`https://api.themoviedb.org/3/movie/${id}/credits?api_key=2c946a717fc5512ca93d05f5bc67d58d`).then((res) => {
-                setActors(res.data.cast);
-            });
-        }
         getActors();
+        getGenres();
 
     }, [id])
+
+
+
+
 
 
     return (
@@ -73,9 +91,17 @@ export default function Card({ title, originalTitle, language, vote, image, id }
                         <li className="text-white" key={crypto.randomUUID()}>{actor.name}</li>
                     )}
                 </ul>
+                <h5 className="text-center p-3">Genere</h5>
+                <ul className="w-100 d-flex justify-content-around list-unstyled">
+                    {genres.map((genre) => {
+                        if (genreID.includes(genre.id)) {
+                            return (<li key={genre.id}>{genre.name}</li>)
+                        }
+                    })}
+                </ul>
 
             </div>
-        </div>
+        </div >
 
     )
 }

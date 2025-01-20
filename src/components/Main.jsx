@@ -1,10 +1,12 @@
 import MoviesCard from "./MoviesCard";
 import TvCard from "./TvCard";
 import { useGlobalContext } from "../contexts/GlobalContext";
+import { useState } from "react";
 
 
 function Main() {
     const { filmsList, seriesList } = useGlobalContext();
+    const [genresID, setGenresID] = useState([]);
 
     {
         if (filmsList.length < 1) {
@@ -27,6 +29,7 @@ function Main() {
                                         vote={film.vote_average}
                                         image={film.poster_path}
                                         id={film.id}
+                                        genreID={film.genre_ids}
 
 
                                     />)

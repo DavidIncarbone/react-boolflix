@@ -17,6 +17,7 @@ const GlobalProvider = ({ children }) => {
     const [filmsList, setFilmsList] = useState([]);
     const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
+    const [genresID, setGenresID] = useState([]);
 
 
     function handleSearch(query) {
@@ -40,6 +41,7 @@ const GlobalProvider = ({ children }) => {
                 if (type === "movie") {
 
                     setFilmsList(res.data.results);
+
                 } else {
                     setSeriesList(res.data.results);
                 }
@@ -54,10 +56,15 @@ const GlobalProvider = ({ children }) => {
 
     }
 
+    console.log(filmsList)
+    console.log(genresID)
+
+
+
 
 
     return (
-        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, apiSearch, apiKey, }}>
             {children}
         </GlobalContext.Provider>
     );
