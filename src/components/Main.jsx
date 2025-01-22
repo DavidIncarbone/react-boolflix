@@ -1,23 +1,28 @@
 import MoviesCard from "./MoviesCard";
 import TvCard from "./TvCard";
 import { useGlobalContext } from "../contexts/GlobalContext";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { HiH1 } from "react-icons/hi2";
 
 
 function Main() {
-    const { filmsList, seriesList } = useGlobalContext();
+    const { filmsList, seriesList, noFilms, query } = useGlobalContext();
     const [genresID, setGenresID] = useState([]);
+
 
     {
         if (filmsList.length < 1) {
             return (<h4 id="info-page" className="text-center text-white">Cerca i tuoi Films preferiti!</h4>)
         } else {
+
             return (
 
                 <main className="mt-5 container-fluid">
                     <section id="movies" className=" py-5">
 
                         <h2 className="p-3 text-center">Films</h2>
+
+
 
                         <div className=" container">
                             <div className="row g-3 ">
@@ -37,6 +42,7 @@ function Main() {
 
                             </div>
                         </div>
+
 
                     </section>
 
@@ -69,11 +75,14 @@ function Main() {
                     </section>
 
 
-                </main>
+                </main >
             )
         }
     }
+
 }
+
+
 
 
 export default Main;

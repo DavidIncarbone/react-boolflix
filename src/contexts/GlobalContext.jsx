@@ -16,6 +16,7 @@ const GlobalProvider = ({ children }) => {
     const [seriesList, setSeriesList] = useState([]);
     const [search, setSearch] = useState("");
     const [selectedGenre, setSelectedGenre] = useState("");
+    const [noFilms, setNoFilms] = useState(false);
 
 
     function handleSearch(event, query) {
@@ -57,7 +58,7 @@ const GlobalProvider = ({ children }) => {
     console.log(seriesList)
 
     return (
-        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, selectedGenre, setSelectedGenre }}>
+        <GlobalContext.Provider value={{ getFilmsFiltered, filmsList, seriesList, search, setSearch, handleSearch, selectedGenre, setSelectedGenre, setNoFilms }}>
             {children}
         </GlobalContext.Provider>
     );
