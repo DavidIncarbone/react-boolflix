@@ -1,3 +1,19 @@
+<h1>OVERVIEW</h1>
+
+<img src="https://github.com/user-attachments/assets/b71cdc19-5a58-4b6c-b108-f1d75b50fba4" alt="Demo" width="600" />
+
+<b>Landing Page</b> realizzata in <b>React.js</b> simile a Netflix.</br>
+Una <b>searchbar</b> ed una <b>select</b> ci permetteranno di effettuare ricerche mirate attraverso una <b>fetch</b> verso le <b>API di terze parti the Movie DB(TMDB)</b>
+
+<h2>TECONOLOGIE UTILIZZATE</h2>
+<ul>
+ <li>HTML, CSS + Bootstrap</li>
+ <li>React.js</li>
+ <li>Axios per fetch API</li>
+</ul>
+
+<h1>STEPS</h1>
+
 # React Components
 
 ```bash
